@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>UNZA Computer Society</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+    
+    <!-- FontAwesome JS-->
+    <script defer th:src="@{/plugins/fontawesome/js/all.min.js}"></script>
+    
+    <!-- App CSS -->  
+    <link id="theme-style" rel="stylesheet" th:href="@{/css/portal.css}">
+
+</head> 
+
+<body class="app app-signup p-0">    	
+    <div class="row g-0 app-auth-wrapper">
+	    <div class="col-12 col-md-7 col-lg-12 auth-main-col text-center p-5 d-flex justify-content-center">
+		    <div class="d-flex flex-column align-content-center">
+			    <div class="app-auth-body mx-auto">	
+				    <div class="app-auth-branding mb-4"><a class="app-logo" th:href="@{/index}"><img class="logo-icon me-2" th:src="@{/images/app-logo.svg}" alt="logo"></a></div>
+					<h2 class="auth-heading text-center mb-4">Sign up to UCS</h2>
+	
+					<div class="auth-form-container text-start mx-auto">
+						<form class="auth-form auth-signup-form" th:action="@{/index}" th:object="${user}" method="POST" enctype="utf8">
+							<div class="email mb-3">
+								<label th:text="#{label.user.firstName}" class="sr-only" for="identity-number">Your First Name</label>
+								<input id="firstName" name="firstName" type="text" th:field="*{firstName}" class="form-control" placeholder="First name" required="required">
+								<p th:each="error: ${#fields.errors('firstName')}"
+								   th:text="${error}">Validation error</p>
+							</div>
+							<div class="email mb-3">
+								<label th:text="#{label.user.lastName}" class="sr-only" for="identity-number">Your First Name</label>
+								<input id="lastName" name="lastName" type="text" th:field="*{lastName}" class="form-control" placeholder="Last name" required="required">
+								<p th:each="error : ${#fields.errors('lastName')}"
+								   th:text="${error}">Validation error</p>
+							</div>
+							<div class="email mb-3">
+								<label th:text="#{label.user.yearOfStudy}" class="sr-only" for="identity-number">Your Year Of Study</label>
+								<input id="signup-year-of-study" name="signup-name" type="number" th:href="*{yearOfStudy}" class="form-control" placeholder="Year of study" min="1" max="4">
+								<p th:each="error : ${#fields.errors('yearOfStudy')}"
+								   th:text="${error}">Validation error</p>
+							</div>
+							<div class="email mb-3">
+								<label th:text="#{label.user.computerNumber}" class="sr-only" for="signup-password">Identity Number</label>
+								<input id="identity-number" name="signup-password" type="text" th:field="*{computerNumber}" class="form-control signup-password" placeholder="User ID number" required="required">
+								<p th:each="error : ${#fields.errors('computerNumber')}"
+								   th:text="${error}">Validation error</p>
+							</div>
+							<div class="password mb-3">
+								<label th:text="#{label.user.password}" class="sr-only" for="signup-password">Password</label>
+								<input id="signup-password" name="signup-password" type="password" th:field="*{password}" class="form-control signup-password" placeholder="Create a password" required="required">
+								<p th:each="error : ${#fields.errors('password')}"
+								   th:text="${error}">Validation error</p>
+							</div>
+							<div class="extra mb-3">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="RememberPassword">
+									<label class="form-check-label" for="RememberPassword">
+										I agree to UCS' Terms of Service and Privacy Policy.
+									</label>
+								</div>
+							</div><!--//extra-->
+							
+							<div class="text-center">
+								<button th:text="#{label.form.submit}" type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto" th:href="@{/index}">Sign Up</button>
+							</div>
+						</form><!--//auth-form-->
+						
+						<div class="auth-option text-center pt-5">Already have an account? <a class="text-link" th:href="@{/loginmein}">Log in</a></div>
+					</div><!--//auth-form-container-->
+			    </div><!--//auth-body-->
+		    </div><!--//flex-column-->   
+	    </div><!--//auth-main-col-->
+    </div><!--//row-->
+
+
+</body>
+</html> 
+
