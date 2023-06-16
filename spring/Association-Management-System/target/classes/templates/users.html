@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Unza Computer Society</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{/home}">Unza Computer Society</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/events}">Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/users}">Members</a>
+            </li>
+        </ul>
+        <span class="navbar-text" >
+            <a class="nav-link" th:href="@{/logmein}">Logout</a></span>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <h1>List users</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <a th:href="@{/users/new}" class="btn btn-primary btn-sm mb-3">Add User</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-stripped table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Year of study</th>
+                <th>Computer number</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "user: ${users}">
+                <td th:text= "${user.firstName}"></td>
+                <td th:text= "${user.lastName}"></td>
+                <td th:text= "${user.yearOfStudy}"></td>
+                <td th:text= "${user.computerNumber}"></td>
+                <td th:text= "${user.email}"></td>
+                <td>
+                    <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-primary btn-sm mb-3">Update</a>
+
+                    <a th:href="@{/users/{id}(id=${user.id})}" class="btn btn-danger btn-sm mb-3">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="export">
+        <a th:href="@{/users/export/excel}" type="button">Export User List</a>
+    </div>
+    <div class="cert">
+        <a th:href="@{/certificate/print}">Print Certificate</a>
+    </div>
+</div>
+</body>
+</html>
